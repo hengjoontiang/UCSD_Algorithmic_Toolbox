@@ -31,9 +31,9 @@ double get_optimal_value(int capacity, vector<int> weights, vector<int> values) 
 		//std::cout << "value_weight_ratio[" << index << "]=" << value_weight_ratio[index] << std::endl;
   }
   
-  //1. init the remain_weight
-  double remain_weight = capacity;
-  while ( remain_weight >= 0.0 ) {
+  //1. init the total_weight
+  double total_weight = 0.0;
+  while ( total_weight <= capacity ) {
 	  //do take note if there are remaining weights
 	  size_vec = weights.size();
 	  
@@ -55,10 +55,10 @@ double get_optimal_value(int capacity, vector<int> weights, vector<int> values) 
 		  
 	  }
 	  
-	  if ( remain_weight - weights[index_largest_ratio] >= 0 ){
+	  if ( total_weight + weights[index_largest_ratio] <= capacity ){
 		  //take the full amount of the values indexed by index_largest_ratio
 		  value += values[index_largest_ratio];
-		  remain_weight -= weights[index_largest_ratio];
+		  total_weight += weights[index_largest_ratio];
 		  
 	  }else {
 		  //since remain weight is less than current weight, we will only take a fraction
@@ -66,8 +66,9 @@ double get_optimal_value(int capacity, vector<int> weights, vector<int> values) 
 		  //std::cout << "remain_weight="<< remain_weight<<std::endl;
 		  //std::cout << "weights["<< index_largest_ratio << "]="<< weights[index_largest_ratio]<<std::endl;
 		  //std::cout << "values["<< index_largest_ratio << "]="<< values[index_largest_ratio]<<std::endl;
-		  value += (remain_weight / weights[index_largest_ratio]  ) * values[index_largest_ratio];
-		  remain_weight = 0;
+		  double weight_used = capacity - total_weight;
+		  value += (weight_used / weights[index_largest_ratio]  ) * values[index_largest_ratio];
+		  total_weight = capacity;
 	  }
 	  
 	  //remove the corresponding index with this ratio
