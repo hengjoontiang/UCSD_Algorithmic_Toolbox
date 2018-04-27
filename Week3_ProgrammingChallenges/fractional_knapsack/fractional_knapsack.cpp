@@ -7,6 +7,7 @@ double get_optimal_value(int capacity, vector<int> weights, vector<int> values) 
   double value = 0.0;
 
   int size_vec = weights.size();
+  
 
   vector<double> value_weight_ratio(size_vec);
   // write your code here
@@ -20,7 +21,7 @@ double get_optimal_value(int capacity, vector<int> weights, vector<int> values) 
   
   //1. init the remain_weight
   double remain_weight = capacity;
-  while ( remain_weight >= 0 ) {
+  while ( remain_weight >= 0.0 ) {
 	  //do take note if there are remaining weights
 	  size_vec = weights.size();
 	  
@@ -48,18 +49,20 @@ double get_optimal_value(int capacity, vector<int> weights, vector<int> values) 
 		  remain_weight -= weights[index_largest_ratio];
 		  
 	  }else {
-		  //since remain weight is less than current weight, we will only take a fractui
+		  //since remain weight is less than current weight, we will only take a fraction
 		  //of current weight = remain_weight
 		  //std::cout << "remain_weight="<< remain_weight<<std::endl;
 		  //std::cout << "weights["<< index_largest_ratio << "]="<< weights[index_largest_ratio]<<std::endl;
 		  //std::cout << "values["<< index_largest_ratio << "]="<< values[index_largest_ratio]<<std::endl;
-		  value += remain_weight / weights[index_largest_ratio] * values[index_largest_ratio];
+		  value += (remain_weight / weights[index_largest_ratio]  ) * values[index_largest_ratio];
 		  remain_weight = 0;
 	  }
 	  
 	  //remove the corresponding index with this ratio
 	  weights.erase(weights.begin()+index_largest_ratio);
 	  values.erase(values.begin()+index_largest_ratio);
+	  value_weight_ratio.erase(value_weight_ratio.begin()+index_largest_ratio);
+	  
   }
   
   //std::cout << "value=" << value << std::endl;
