@@ -5,6 +5,17 @@ using std::vector;
 
 double get_optimal_value(int capacity, vector<int> weights, vector<int> values) {
   double value = 0.0;
+  int init_size_vec = weights.size();
+  //skip if the weight is zero or value is zero
+  //in fact we will remove it from the original vector
+  //note that index init_size_vec is not included 
+  for (int index=init_size_vec-1; index >=0; index--) {
+	  if (weights[index] == 0) {
+		  weights.erase(weights.begin()+index);
+		  values.erase(values.begin()+index);
+	  }
+  }
+
 
   int size_vec = weights.size();
   
@@ -13,6 +24,7 @@ double get_optimal_value(int capacity, vector<int> weights, vector<int> values) 
   // write your code here
   //0. create a vector<int> consisting of the ratio
   for (int index=0; index < size_vec; index++) {
+	    
 		value_weight_ratio[index] = values[index] / weights[index];
 		//std::cout << "values[" << index << "]=" << values[index] << std::endl;
 		//std::cout << "weights[" << index << "]=" << weights[index] << std::endl;
@@ -29,8 +41,8 @@ double get_optimal_value(int capacity, vector<int> weights, vector<int> values) 
 	  if (size_vec == 0) break; 
 	  
 	  
-	  double largest_ratio = 0.0;
-	  int index_largest_ratio = 0;
+	  double largest_ratio = -1.0;
+	  int index_largest_ratio = -1;
 	  
 	  for (int index=0; index < size_vec; index++) {
 		  //find the ratio with largest value
