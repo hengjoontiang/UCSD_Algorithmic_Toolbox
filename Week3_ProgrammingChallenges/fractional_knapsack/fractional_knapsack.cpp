@@ -10,7 +10,7 @@ double get_optimal_value(int capacity, vector<int> weights, vector<int> values) 
   //in fact we will remove it from the original vector
   //note that index init_size_vec is not included 
   for (int index=init_size_vec-1; index >=0; index--) {
-	  if (weights[index] == 0) {
+	  if (weights[index] == 0 || values[index] == 0 ) {
 		  weights.erase(weights.begin()+index);
 		  values.erase(values.begin()+index);
 	  }
