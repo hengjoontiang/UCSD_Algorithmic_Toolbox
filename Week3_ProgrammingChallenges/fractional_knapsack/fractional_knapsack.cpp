@@ -68,7 +68,7 @@ double get_optimal_value(int capacity, vector<int> weights, vector<int> values) 
 		  //std::cout << "values["<< index_largest_ratio << "]="<< values[index_largest_ratio]<<std::endl;
 		  double weight_used = capacity - total_weight;
 		  value += (weight_used / weights[index_largest_ratio]  ) * values[index_largest_ratio];
-		  total_weight = capacity;
+		  total_weight += weight_used;
 	  }
 	  
 	  //remove the corresponding index with this ratio
