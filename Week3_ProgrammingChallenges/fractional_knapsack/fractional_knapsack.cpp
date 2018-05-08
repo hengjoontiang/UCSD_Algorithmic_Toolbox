@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <iomanip>
 
 using std::vector;
 
@@ -67,7 +68,8 @@ double get_optimal_value(int capacity, vector<int> weights, vector<int> values) 
 		  //std::cout << "weights["<< index_largest_ratio << "]="<< weights[index_largest_ratio]<<std::endl;
 		  //std::cout << "values["<< index_largest_ratio << "]="<< values[index_largest_ratio]<<std::endl;
 		  double weight_used = capacity - total_weight;
-		  value += (weight_used / weights[index_largest_ratio]  ) * values[index_largest_ratio];
+		  double ratio = weight_used / weights[index_largest_ratio]  ;
+		  value +=  ratio * values[index_largest_ratio];
 		  total_weight += weight_used;
 	  }
 	  
@@ -95,6 +97,7 @@ int main() {
   double optimal_value = get_optimal_value(capacity, weights, values);
 
   std::cout.precision(10);
-  std::cout << optimal_value << std::endl;
+  
+  std::cout <<  std::fixed << std::setprecision(4) << optimal_value << std::endl;
   return 0;
 }
