@@ -29,6 +29,7 @@ bool compareByLeftMostPoint(const int a, const int b)
 struct Segment {
   int start, end;
 };
+//if leftmost point is the same, then we will opt for the shortest length ; i.e most restrictive
 bool operator < (const Segment & a, const Segment & b)
 {
 	if (a.start == b.start) {
