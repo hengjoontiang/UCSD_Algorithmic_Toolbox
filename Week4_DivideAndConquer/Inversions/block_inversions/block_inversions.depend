@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1538814851 source:/home/hengjt/Desktop/Edx/MicroMasters/UCSanDiegoX/Algorithmic_Toolbox/Week4_DivideAndConquer/Inversions/block_inversions/main.cpp
+	<iostream>
+	<vector>
+	<assert.h>
+
